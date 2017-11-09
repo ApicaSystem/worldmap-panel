@@ -37,7 +37,6 @@ System.register(['app/plugins/sdk', 'app/core/time_series2', 'app/core/utils/kbn
 
   return {
     setters: [function (_appPluginsSdk) {
-      /* eslint import/no-extraneous-dependencies: 0 */
       MetricsPanelCtrl = _appPluginsSdk.MetricsPanelCtrl;
     }, function (_appCoreTime_series) {
       TimeSeries = _appCoreTime_series.default;
@@ -172,8 +171,8 @@ System.register(['app/plugins/sdk', 'app/core/time_series2', 'app/core/utils/kbn
             } else if (this.panel.locationData === 'table') {
               // .. Do nothing
             } else if (this.panel.locationData !== 'geohash') {
-                window.$.getJSON('public/plugins/grafana-worldmap-panel/data/' + this.panel.locationData + '.json').then(this.reloadLocations.bind(this));
-              }
+              window.$.getJSON('public/plugins/' + this.pluginId + '/data/' + this.panel.locationData + '.json').then(this.reloadLocations.bind(this));
+            }
           }
         }, {
           key: 'reloadLocations',
@@ -189,7 +188,7 @@ System.register(['app/plugins/sdk', 'app/core/time_series2', 'app/core/utils/kbn
         }, {
           key: 'onInitEditMode',
           value: function onInitEditMode() {
-            this.addEditorTab('Worldmap', 'public/plugins/grafana-worldmap-panel/partials/editor.html', 2);
+            this.addEditorTab('Worldmap', 'public/plugins/' + this.pluginId + '/partials/editor.html', 2);
           }
         }, {
           key: 'onDataReceived',
