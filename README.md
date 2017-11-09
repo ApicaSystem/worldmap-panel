@@ -17,10 +17,12 @@ Required the following 'columns' in table:
 - a column with popup label text that will be shown on mouse over the point on the map, optional, if nothing then n/a will be shown as a popup label.
 
 Editor tab is simplified. The following settings can be found here:
+
 Map Visual Options:
 - Center - for centering the map
 - Initial Zoom
 - Min Circle Size - no different sizes are allowed, so this field sets all circles size
 - Sticky Labels - if checked then popup labels will not disappear automatically
+
 Map Data Options:
 - Table Label Field - table column that should be used as popup label text. Predefined with 'summaryHtml' value, which is the column name that contains Apica Syntetic Monitoring location checks summary. 
