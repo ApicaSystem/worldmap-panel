@@ -77,3 +77,19 @@
 
 - Fixes some coordinates in the country location data.
 - Last Geohash as center for the map - it centers the map on the last geohash position received. Useful for real time tracking (with auto refresh on in Grafana).
+
+## v0.0.19
+
+Fix for Elasticsearch geohash maps after breaking change in Grafana 4.5.
+
+## v0.0.20
+
+Small fixes.
+
+## v0.0.21
+
+ - Support for new data source integration, the Dynamic JSON endpoint [#103](https://github.com/grafana/worldmap-panel/issues/103), thanks [@LostInBrittany](https://github.com/LostInBrittany)
+ - Fix for using floats in thresholds [#79](https://github.com/grafana/worldmap-panel/issues/79), thanks [@fabienpomerol](https://github.com/fabienpomerol)
+ - Fix for newly created Worldmap panels overflowing their boundaries.
+ - Fix for legend css
+ - Turned off mouse wheel zoom
