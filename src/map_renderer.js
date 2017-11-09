@@ -1,5 +1,5 @@
 import './css/leaflet.css!';
-import WorldMap from './worldmap';
+import WorldMap from './worldmap_apica';
 
 export default function link(scope, elem, attrs, ctrl) {
   const mapContainer = elem.find('.mapcontainer');
