@@ -26,3 +26,7 @@ Map Visual Options:
 
 Map Data Options:
 - Table Label Field - table column that should be used as popup label text. Predefined with 'summaryHtml' value, which is the column name that contains Apica Syntetic Monitoring location checks summary. 
+
+## v0.0.2
+
+Upgraded from [Grafana Worldmap Panel plugin](https://github.com/grafana/worldmap-panel) v0.0.21
