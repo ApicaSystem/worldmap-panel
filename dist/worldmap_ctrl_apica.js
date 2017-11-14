@@ -116,6 +116,19 @@ System.register(['./worldmap_ctrl', 'jquery'], function (_export, _context) {
         }
 
         _createClass(WorldmapCtrl, [{
+          key: 'onDataSnapshotLoad',
+          value: function onDataSnapshotLoad(snapshotData) {
+            var _this2 = this;
+
+            _get(WorldmapCtrl.prototype.__proto__ || Object.getPrototypeOf(WorldmapCtrl.prototype), 'onDataSnapshotLoad', this).call(this, snapshotData);
+            // a hack to make sure that map is initialized (it doesn't happen in time when work in snapshot mode) 
+            if (!this.map) {
+              setTimeout(function () {
+                _this2.render();
+              }, 100);
+            }
+          }
+        }, {
           key: 'onInitEditMode',
           value: function onInitEditMode() {
             // tab will be added as a tag with name 'panel-editor-tab-{pluginId}{editTabIndex}', for example: <panel-editor-tab-apica-worldmap-panel-poc2> 

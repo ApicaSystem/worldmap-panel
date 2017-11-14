@@ -35,6 +35,16 @@ export default class WorldmapCtrl extends WorldmapCtrlOriginal {
     this.events.on('refresh', this.tweakOriginalEditor.bind(this));
   }
 
+  onDataSnapshotLoad(snapshotData) {
+    super.onDataSnapshotLoad(snapshotData);
+    // a hack to make sure that map is initialized (it doesn't happen in time when work in snapshot mode) 
+    if (!this.map) {
+      setTimeout(() => {
+        this.render();
+      }, 100);
+    }
+  }
+
   onInitEditMode() {
     // tab will be added as a tag with name 'panel-editor-tab-{pluginId}{editTabIndex}', for example: <panel-editor-tab-apica-worldmap-panel-poc2> 
     this.addEditorTab('Worldmap', `public/plugins/${this.pluginId}/partials/editor.html`, editTabIndex);
