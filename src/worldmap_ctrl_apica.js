@@ -73,6 +73,9 @@ export default class WorldmapCtrl extends WorldmapCtrlOriginal {
           input[ng-model="ctrl.panel.thresholds"],
           gf-form-switch[checked="ctrl.panel.hideEmpty"]
         `).closest('.gf-form-group').hide();
+      
+      $(`.tabbed-view-body ${editTabElementName} input[ng-model="ctrl.panel.circleMinSize"]`).siblings('.gf-form-label').text('Circle Size');
+            
     }, 100);
   }
   

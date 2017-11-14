@@ -145,6 +145,8 @@ System.register(['./worldmap_ctrl', 'jquery'], function (_export, _context) {
               // - Threshold Options (Thresholds, Colors) - thresholds are used for circles coloring that 
               // - Hide series (With only nulls, With only zeros)
               $('.tabbed-view-body ' + editTabElementName).find('\n          input[ng-model="ctrl.panel.thresholds"],\n          gf-form-switch[checked="ctrl.panel.hideEmpty"]\n        ').closest('.gf-form-group').hide();
+
+              $('.tabbed-view-body ' + editTabElementName + ' input[ng-model="ctrl.panel.circleMinSize"]').siblings('.gf-form-label').text('Circle Size');
             }, 100);
           }
         }, {
