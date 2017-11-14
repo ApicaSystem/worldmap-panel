@@ -12,8 +12,9 @@ export default class WorldMap {
   constructor(ctrl, mapContainer) {
     this.ctrl = ctrl;
     this.mapContainer = mapContainer;
-    this.createMap();
     this.circles = [];
+
+    return this.createMap();
   }
 
   createMap() {
@@ -22,6 +23,7 @@ export default class WorldMap {
       .fitWorld()
       .zoomIn(parseInt(this.ctrl.panel.initialZoom, 10));
     this.map.panTo(mapCenter);
+    this.map.scrollWheelZoom.disable();
 
     const selectedTileServer = tileServers[this.ctrl.tileServer];
     window.L.tileLayer(selectedTileServer.url, {
@@ -44,12 +46,12 @@ export default class WorldMap {
     this.legend.update = () => {
       const thresholds = this.ctrl.data.thresholds;
       let legendHtml = '';
-      legendHtml += '<i style="background:' + this.ctrl.panel.colors[0] + '"></i> ' +
-          '&lt; ' + thresholds[0] + '<br>';
+      legendHtml += '<div class="legend-item"><i style="background:' + this.ctrl.panel.colors[0] + '"></i> ' +
+          '&lt; ' + thresholds[0] + '</div>';
       for (let index = 0; index < thresholds.length; index += 1) {
         legendHtml +=
-          '<i style="background:' + this.getColor(thresholds[index] + 1) + '"></i> ' +
-          thresholds[index] + (thresholds[index + 1] ? '&ndash;' + thresholds[index + 1] + '<br>' : '+');
+          '<div class="legend-item"><i style="background:' + this.ctrl.panel.colors[index + 1] + '"></i> ' +
+          thresholds[index] + (thresholds[index + 1] ? '&ndash;' + thresholds[index + 1] + '</div>' : '+');
       }
       this.legend._div.innerHTML = legendHtml;
     };

@@ -47,8 +47,9 @@ System.register(['lodash', './libs/leaflet'], function (_export, _context) {
 
           this.ctrl = ctrl;
           this.mapContainer = mapContainer;
-          this.createMap();
           this.circles = [];
+
+          return this.createMap();
         }
 
         _createClass(WorldMap, [{
@@ -57,6 +58,7 @@ System.register(['lodash', './libs/leaflet'], function (_export, _context) {
             var mapCenter = window.L.latLng(parseFloat(this.ctrl.panel.mapCenterLatitude), parseFloat(this.ctrl.panel.mapCenterLongitude));
             this.map = window.L.map(this.mapContainer, { worldCopyJump: true, center: mapCenter }).fitWorld().zoomIn(parseInt(this.ctrl.panel.initialZoom, 10));
             this.map.panTo(mapCenter);
+            this.map.scrollWheelZoom.disable();
 
             var selectedTileServer = tileServers[this.ctrl.tileServer];
             window.L.tileLayer(selectedTileServer.url, {
@@ -82,9 +84,9 @@ System.register(['lodash', './libs/leaflet'], function (_export, _context) {
             this.legend.update = function () {
               var thresholds = _this.ctrl.data.thresholds;
               var legendHtml = '';
-              legendHtml += '<i style="background:' + _this.ctrl.panel.colors[0] + '"></i> ' + '&lt; ' + thresholds[0] + '<br>';
+              legendHtml += '<div class="legend-item"><i style="background:' + _this.ctrl.panel.colors[0] + '"></i> ' + '&lt; ' + thresholds[0] + '</div>';
               for (var index = 0; index < thresholds.length; index += 1) {
-                legendHtml += '<i style="background:' + _this.getColor(thresholds[index] + 1) + '"></i> ' + thresholds[index] + (thresholds[index + 1] ? '&ndash;' + thresholds[index + 1] + '<br>' : '+');
+                legendHtml += '<div class="legend-item"><i style="background:' + _this.ctrl.panel.colors[index + 1] + '"></i> ' + thresholds[index] + (thresholds[index + 1] ? '&ndash;' + thresholds[index + 1] + '</div>' : '+');
               }
               _this.legend._div.innerHTML = legendHtml;
             };
