@@ -19,6 +19,8 @@ const panelDefaultsApica = {
   ]
 };
 
+const editTabIndex = 2;
+
 export default class WorldmapCtrl extends WorldmapCtrlOriginal {
 
   constructor($scope, $injector, contextSrv) {
@@ -33,37 +35,58 @@ export default class WorldmapCtrl extends WorldmapCtrlOriginal {
     this.events.on('refresh', this.tweakOriginalEditor.bind(this));
   }
 
+  onDataSnapshotLoad(snapshotData) {
+    super.onDataSnapshotLoad(snapshotData);
+    // a hack to make sure that map is initialized (it doesn't happen in time when work in snapshot mode) 
+    if (!this.map) {
+      setTimeout(() => {
+        this.render();
+      }, 100);
+    }
+  }
+
+  onInitEditMode() {
+    // tab will be added as a tag with name 'panel-editor-tab-{pluginId}{editTabIndex}', for example: <panel-editor-tab-apica-worldmap-panel-poc2> 
+    this.addEditorTab('Worldmap', `public/plugins/${this.pluginId}/partials/editor.html`, editTabIndex);
+  }
+
   changeTab(newIndex) {
     super.changeTab(newIndex);
-    setTimeout(() => { this.tweakOriginalEditor(); }, 100);
+    this.tweakOriginalEditor();
   }
 
   tweakOriginalEditor() {
-    // hide not useless Map Visual Options:
-    // - Max Circle Size - circle sizes should be the same for now
-    // - Decimals - metric is used for the color, so decimals settings is useless
-    // - Unit - same as Decimals
-    // - Show Legend - legend shows metric values, but they as color codes are useless
-    // - Location Data - should always be 'table' (ASM Datasource provides data in table format)
-    // - Aggregation - not used, 'metric' property from data source is always used
-    $('.tabbed-view-body')
-      .find(`
-        input[ng-model="ctrl.panel.circleMaxSize"],
-        input[ng-model="ctrl.panel.decimals"],
-        input[ng-model="ctrl.panel.unitSingular"],
-        gf-form-switch[checked="ctrl.panel.showLegend"],
-        select[ng-model="ctrl.panel.locationData"],
-        select[ng-model="ctrl.panel.valueName"]
-      `).closest('.gf-form').hide();
+    let editTabElementName = `panel-editor-tab-${this.pluginId}${editTabIndex}`;
+    setTimeout(() => {
+      // hide not useless Map Visual Options:
+      // - Max Circle Size - circle sizes should be the same for now
+      // - Decimals - metric is used for the color, so decimals settings is useless
+      // - Unit - same as Decimals
+      // - Show Legend - legend shows metric values, but they as color codes are useless
+      // - Location Data - should always be 'table' (ASM Datasource provides data in table format)
+      // - Aggregation - not used, 'metric' property from data source is always used
+      $(`.tabbed-view-body ${editTabElementName}`)
+        .find(`
+          input[ng-model="ctrl.panel.circleMaxSize"],
+          input[ng-model="ctrl.panel.decimals"],
+          input[ng-model="ctrl.panel.unitSingular"],
+          gf-form-switch[checked="ctrl.panel.showLegend"],
+          select[ng-model="ctrl.panel.locationData"],
+          select[ng-model="ctrl.panel.valueName"]
+        `).closest('.gf-form').hide();
 
-    // hide not useless Map Visual Options:
-    // - Threshold Options (Thresholds, Colors) - thresholds are used for circles coloring that 
-    // - Hide series (With only nulls, With only zeros)
-    $('.tabbed-view-body')
-      .find(`
-        input[ng-model="ctrl.panel.thresholds"],
-        gf-form-switch[checked="ctrl.panel.hideEmpty"]
-      `).closest('.gf-form-group').hide();
+      // hide not useless Map Visual Options:
+      // - Threshold Options (Thresholds, Colors) - thresholds are used for circles coloring that 
+      // - Hide series (With only nulls, With only zeros)
+      $(`.tabbed-view-body ${editTabElementName}`)
+        .find(`
+          input[ng-model="ctrl.panel.thresholds"],
+          gf-form-switch[checked="ctrl.panel.hideEmpty"]
+        `).closest('.gf-form-group').hide();
+      
+      $(`.tabbed-view-body ${editTabElementName} input[ng-model="ctrl.panel.circleMinSize"]`).siblings('.gf-form-label').text('Circle Size');
+            
+    }, 100);
   }
   
   render() {
