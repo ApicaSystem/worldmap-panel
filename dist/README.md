@@ -30,3 +30,7 @@ Map Data Options:
 ## v0.0.2
 
 Upgraded from [Grafana Worldmap Panel plugin](https://github.com/grafana/worldmap-panel) v0.0.21
+
+## v0.1.0
+
+Minor bugfixes. Version is 0.1.0 now.
