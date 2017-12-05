@@ -13,8 +13,8 @@ System.register(['app/plugins/sdk', './worldmap_ctrl_apica'], function (_export,
     execute: function () {
       /* eslint import/no-extraneous-dependencies: 0 */
       loadPluginCss({
-        dark: 'plugins/apica-worldmap-panel-poc/css/worldmap.dark.css',
-        light: 'plugins/apica-worldmap-panel-poc/css/worldmap.light.css'
+        dark: 'plugins/apica-worldmap-panel/css/worldmap.dark.css',
+        light: 'plugins/apica-worldmap-panel/css/worldmap.light.css'
       });
 
       /* eslint import/prefer-default-export: 0 */

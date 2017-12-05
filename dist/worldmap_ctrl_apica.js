@@ -131,7 +131,7 @@ System.register(['./worldmap_ctrl', 'jquery'], function (_export, _context) {
         }, {
           key: 'onInitEditMode',
           value: function onInitEditMode() {
-            // tab will be added as a tag with name 'panel-editor-tab-{pluginId}{editTabIndex}', for example: <panel-editor-tab-apica-worldmap-panel-poc2> 
+            // tab will be added as a tag with name 'panel-editor-tab-{pluginId}{editTabIndex}', for example: <panel-editor-tab-apica-worldmap-panel2> 
             this.addEditorTab('Worldmap', 'public/plugins/' + this.pluginId + '/partials/editor.html', editTabIndex);
           }
         }, {

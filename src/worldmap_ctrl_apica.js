@@ -46,7 +46,7 @@ export default class WorldmapCtrl extends WorldmapCtrlOriginal {
   }
 
   onInitEditMode() {
-    // tab will be added as a tag with name 'panel-editor-tab-{pluginId}{editTabIndex}', for example: <panel-editor-tab-apica-worldmap-panel-poc2> 
+    // tab will be added as a tag with name 'panel-editor-tab-{pluginId}{editTabIndex}', for example: <panel-editor-tab-apica-worldmap-panel2> 
     this.addEditorTab('Worldmap', `public/plugins/${this.pluginId}/partials/editor.html`, editTabIndex);
   }
 

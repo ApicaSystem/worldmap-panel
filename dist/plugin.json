@@ -1,7 +1,7 @@
 {
   "type": "panel",
-  "name": "Apica Worldmap Panel PoC",
-  "id": "apica-worldmap-panel-poc",
+  "name": "Apica Worldmap Panel",
+  "id": "apica-worldmap-panel",
 
   "info": {
     "description": "Apica World Map panel for Grafana. Supports geo coordinates data provided by Apica Synthetic Monitoring datasource. Based on Grafana Worldmap Panel plugin: https://github.com/grafana/worldmap-panel.",
