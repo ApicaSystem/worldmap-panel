@@ -167,6 +167,12 @@ System.register(['./worldmap_ctrl', 'jquery'], function (_export, _context) {
       }(WorldmapCtrlOriginal);
 
       _export('default', WorldmapCtrl);
+
+      // note that plugin id (apica-worldmap-panel) is hardcoded here as templateUrl is static
+      // it isn't clear how to avoid hardcode (like it was done in the constructor using $scope.ctrl.pluginId)
+      // from grafana hosting all plugins will be available from linear structure, no matter how they actually added into physical plugins folder.
+      // this way ('../../plugins/pluginid/resource) we make sure plugin will work even if it's included in an app plugin sub-folder.  
+      WorldmapCtrl.templateUrl = '../../plugins/apica-worldmap-panel/module.html';
     }
   };
 });
