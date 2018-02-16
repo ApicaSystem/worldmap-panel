@@ -38,3 +38,9 @@ Upgraded from [Grafana Worldmap Panel plugin](https://github.com/grafana/worldma
 #### v0.1.0
 
 Minor bugfixes. Version is 0.1.0 now.
+
+#### v0.1.1
+
+Bugfixes:
+WPMX-4090 - Redundant options sometimes are not hidden on first load
+Fixed path to panel view html's (module.html) to be relative, so plugin will work without changes when included into an app plugin.

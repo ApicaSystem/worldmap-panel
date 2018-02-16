@@ -109,9 +109,6 @@ System.register(['./worldmap_ctrl', 'jquery'], function (_export, _context) {
           if (!_this.panel.tableLabel) {
             _.assign(_this.panel, _.cloneDeep(panelDefaultsApica));
           }
-
-          _this.events.on('render', _this.tweakOriginalEditor.bind(_this));
-          _this.events.on('refresh', _this.tweakOriginalEditor.bind(_this));
           return _this;
         }
 
@@ -135,32 +132,27 @@ System.register(['./worldmap_ctrl', 'jquery'], function (_export, _context) {
             this.addEditorTab('Worldmap', 'public/plugins/' + this.pluginId + '/partials/editor.html', editTabIndex);
           }
         }, {
-          key: 'changeTab',
-          value: function changeTab(newIndex) {
-            _get(WorldmapCtrl.prototype.__proto__ || Object.getPrototypeOf(WorldmapCtrl.prototype), 'changeTab', this).call(this, newIndex);
-            this.tweakOriginalEditor();
-          }
-        }, {
-          key: 'tweakOriginalEditor',
-          value: function tweakOriginalEditor() {
+          key: 'initCtrl',
+          value: function initCtrl() {
             var editTabElementName = 'panel-editor-tab-' + this.pluginId + editTabIndex;
-            setTimeout(function () {
-              // hide not useless Map Visual Options:
-              // - Max Circle Size - circle sizes should be the same for now
-              // - Decimals - metric is used for the color, so decimals settings is useless
-              // - Unit - same as Decimals
-              // - Show Legend - legend shows metric values, but they as color codes are useless
-              // - Location Data - should always be 'table' (ASM Datasource provides data in table format)
-              // - Aggregation - not used, 'metric' property from data source is always used
-              $('.tabbed-view-body ' + editTabElementName).find('\n          input[ng-model="ctrl.panel.circleMaxSize"],\n          input[ng-model="ctrl.panel.decimals"],\n          input[ng-model="ctrl.panel.unitSingular"],\n          gf-form-switch[checked="ctrl.panel.showLegend"],\n          select[ng-model="ctrl.panel.locationData"],\n          select[ng-model="ctrl.panel.valueName"]\n        ').closest('.gf-form').hide();
+            // hide not useless Map Visual Options:
+            // - Max Circle Size - circle sizes should be the same for now
+            // - Decimals - metric is used for the color, so decimals settings is useless
+            // - Unit - same as Decimals
+            // - Show Legend - legend shows metric values, but they as color codes are useless
+            // - Location Data - should always be 'table' (ASM Datasource provides data in table format)
+            // - Aggregation - not used, 'metric' property from data source is always used
+            $('.tabbed-view-body ' + editTabElementName).find('\n        input[ng-model="ctrl.panel.circleMaxSize"],\n        input[ng-model="ctrl.panel.decimals"],\n        input[ng-model="ctrl.panel.unitSingular"],\n        gf-form-switch[checked="ctrl.panel.showLegend"],\n        select[ng-model="ctrl.panel.locationData"],\n        select[ng-model="ctrl.panel.valueName"]\n      ').closest('.gf-form').hide();
 
-              // hide not useless Map Visual Options:
-              // - Threshold Options (Thresholds, Colors) - thresholds are used for circles coloring that 
-              // - Hide series (With only nulls, With only zeros)
-              $('.tabbed-view-body ' + editTabElementName).find('\n          input[ng-model="ctrl.panel.thresholds"],\n          gf-form-switch[checked="ctrl.panel.hideEmpty"]\n        ').closest('.gf-form-group').hide();
+            // hide not useless Map Visual Options:
+            // - Threshold Options (Thresholds, Colors) - thresholds are used for circles coloring that 
+            // - Hide series (With only nulls, With only zeros)
+            $('.tabbed-view-body ' + editTabElementName).find('\n        input[ng-model="ctrl.panel.thresholds"],\n        gf-form-switch[checked="ctrl.panel.hideEmpty"]\n      ').closest('.gf-form-group').hide();
 
-              $('.tabbed-view-body ' + editTabElementName + ' input[ng-model="ctrl.panel.circleMinSize"]').siblings('.gf-form-label').text('Circle Size');
-            }, 100);
+            $('.tabbed-view-body ' + editTabElementName + ' input[ng-model="ctrl.panel.circleMinSize"]').siblings('.gf-form-label').text('Circle Size');
+
+            // Editor is hidden by default. Make it visible.
+            $('.tabbed-view-body ' + editTabElementName + ' .editor-row').show();
           }
         }, {
           key: 'render',
@@ -175,6 +167,12 @@ System.register(['./worldmap_ctrl', 'jquery'], function (_export, _context) {
       }(WorldmapCtrlOriginal);
 
       _export('default', WorldmapCtrl);
+
+      // note that plugin id (apica-worldmap-panel) is hardcoded here as templateUrl is static
+      // it isn't clear how to avoid hardcode (like it was done in the constructor using $scope.ctrl.pluginId)
+      // from grafana hosting all plugins will be available from linear structure, no matter how they actually added into physical plugins folder.
+      // this way ('../../plugins/pluginid/resource) we make sure plugin will work even if it's included in an app plugin sub-folder.  
+      WorldmapCtrl.templateUrl = '../../plugins/apica-worldmap-panel/module.html';
     }
   };
 });
