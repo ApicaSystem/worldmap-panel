@@ -91,7 +91,7 @@ System.register(['./worldmap_ctrl', 'jquery'], function (_export, _context) {
         circleMinSize: 5,
         circleMaxSize: 5,
         showLegend: false,
-
+        stickyLabels: true,
         thresholds: '1,2,3,4',
         colors: ['rgba(90, 98, 90, 0.9)', 'rgba(50, 172, 45, 0.97)', 'rgba(224, 210, 0, 0.97)', 'rgba(237, 129, 40, 0.89)', 'rgba(245, 54, 54, 0.9)']
       };
