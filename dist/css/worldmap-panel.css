@@ -36,3 +36,90 @@
 .leaflet-top.leaflet-left, .leaflet-bottom.leaflet-left, .leaflet-bottom.leaflet-right {
   z-index: 100;
 }
+
+.marker-cluster_fatal {
+  background: #bf0808;  
+}
+
+.marker-cluster_fatal div {
+  background: #cf1818;  
+}
+                     
+.marker-cluster_error {
+  background: #df7a00;
+}
+
+.marker-cluster_error div {
+  background: #df8a0f;
+}
+
+.marker-cluster_warning {
+  background: #c0b200;
+}
+
+.marker-cluster_warning div {
+  background: #d0a200;
+}
+
+.marker-cluster_information {
+  background: #46982f;
+}
+
+.marker-cluster_information div {
+  background: #56a83f;
+}
+
+.marker-cluster_unknown {
+  background: #727272;
+}
+
+.marker-cluster_unknown div {
+  background: #828282;
+}
+ 
+.popup-content {
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.location-section, .summary-section {
+  width: 210px;
+}
+
+.location-section__name, .summary-section__name {
+  width: 210px;
+  font-weight: bold;
+  display: inline-block;
+  text-align: center;
+  word-break: break-all;
+}
+
+.location-section__severity, .summary-section__description, .summary-section__severity {
+  width: 32px;
+  display: inline-block;
+  text-align: center;
+}
+
+.location-section__severity_total, .summary-section__description_total, .summary-section__severity_total {
+  color: #ffffff;
+}
+
+.location-section__severity_information, .summary-section__description_information, .summary-section__severity_information {
+  color: #66b84f;
+}
+
+.location-section__severity_warning, .summary-section__description_warning, .summary-section__severity_warning {
+  color: #e0d200;
+}
+
+.location-section__severity_error, .summary-section__description_error, .summary-section__severity_error {
+  color: #ff9a1f;
+}
+
+.location-section__severity_fatal, .summary-section__description_fatal, .summary-section__severity_fatal {
+  color: #df2828;
+}
+
+.location-section__severity_unknow, .summary-section__description_unknow, .summary-section__severity_unknow {
+  color: #929292;
+}
