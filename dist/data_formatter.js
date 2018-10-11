@@ -177,7 +177,9 @@ System.register(['lodash', './geohash'], function (_export, _context) {
 
                 var dataValue = {
                   key: encodedGeohash,
-                  locationName: datapoint[_this3.ctrl.panel.tableLabel] || 'n/a',
+                  locationName: datapoint.name,
+                  summary: datapoint[_this3.ctrl.panel.tableLabel] || 'n/a',
+                  countBySeverity: datapoint.countBySeverity,
                   locationLatitude: decodedGeohash.latitude,
                   locationLongitude: decodedGeohash.longitude,
                   value: datapoint.metric,

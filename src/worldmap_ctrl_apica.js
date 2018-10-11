@@ -8,7 +8,7 @@ const panelDefaultsApica = {
   circleMinSize: 5,
   circleMaxSize: 5,
   showLegend: false,
-
+  stickyLabels: true,
   thresholds: '1,2,3,4',
   colors: [
     'rgba(90, 98, 90, 0.9)',
