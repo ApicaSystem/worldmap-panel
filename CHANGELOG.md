@@ -93,3 +93,7 @@ Small fixes.
  - Fix for newly created Worldmap panels overflowing their boundaries.
  - Fix for legend css
  - Turned off mouse wheel zoom
+
+## v0.1.2
+
+ - Added Leaflet.markercluster plugin for grouping feature.

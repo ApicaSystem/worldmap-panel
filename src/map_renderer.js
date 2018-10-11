@@ -1,5 +1,7 @@
 import './css/leaflet.css!';
-import WorldMap from './worldmap';
+import './css/MarkerCluster.css!';
+import './css/MarkerCluster.Default.css!';
+import WorldMap from './worldmap_apica';
 
 export default function link(scope, elem, attrs, ctrl) {
   ctrl.events.on('render', () => {
