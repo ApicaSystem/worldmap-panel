@@ -44,3 +44,7 @@ Minor bugfixes. Version is 0.1.0 now.
 Bugfixes:
 WPMX-4090 - Redundant options sometimes are not hidden on first load
 Fixed path to panel view html's (module.html) to be relative, so plugin will work without changes when included into an app plugin.
+
+#### v0.1.1b
+
+ASM-3514 - map render fix
