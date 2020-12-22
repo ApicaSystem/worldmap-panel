@@ -49,4 +49,8 @@ Fixed path to panel view html's (module.html) to be relative, so plugin will wor
 
 ASM-262 
  - Added Leaflet.markercluster plugin for grouping feature
- - Set StickyLabel to True by default 
+ - Set StickyLabel to True by default
+
+#### v0.1.3
+
+ASM-3514 - map render fix 

@@ -18,16 +18,18 @@ export default function link(scope, elem, attrs, ctrl) {
       return;
     }
 
-    if (!ctrl.map) {
-      ctrl.map = new WorldMap(ctrl, mapContainer[0]);
-    }
+    setTimeout(() => {
+        if (!ctrl.map) {
+          ctrl.map = new WorldMap(ctrl, mapContainer[0]);
+        }
 
-    ctrl.map.resize();
+        ctrl.map.resize();
 
-    if (ctrl.mapCenterMoved) ctrl.map.panToMapCenter();
+        if (ctrl.mapCenterMoved) ctrl.map.panToMapCenter();
 
-    if (!ctrl.map.legend && ctrl.panel.showLegend) ctrl.map.createLegend();
+        if (!ctrl.map.legend && ctrl.panel.showLegend) ctrl.map.createLegend();
 
-    ctrl.map.drawCircles();
+        ctrl.map.drawCircles();
+    }, 100);
   }
 }
